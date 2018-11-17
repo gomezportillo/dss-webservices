@@ -14,3 +14,4 @@ out/
 .java-version
 .settings
 *.class
+build/

@@ -1,4 +1,4 @@
-package jersey.first;
+package model;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;

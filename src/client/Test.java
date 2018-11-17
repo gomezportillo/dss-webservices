@@ -1,4 +1,4 @@
-package jersey.first;
+package client;
 
 import java.net.URI;
 
@@ -32,6 +32,6 @@ public class Test {
 	}
 
 	private static URI getBaseURI() {
-		return UriBuilder.fromUri("http://localhost:8080/jersey.first").build();
+		return UriBuilder.fromUri("http://localhost:8080/dss-webservices").build();
 	}
 }

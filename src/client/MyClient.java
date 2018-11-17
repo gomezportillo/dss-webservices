@@ -11,7 +11,7 @@ import javax.ws.rs.core.UriBuilder;
 
 import org.glassfish.jersey.client.ClientConfig;
 
-public class Test {
+public class MyClient {
 
 	public static void main(String[] args) {
 		ClientConfig config = new ClientConfig();
@@ -25,10 +25,10 @@ public class Test {
 		String xmlAnswer = target.path("rest").path("hello").request().accept(MediaType.TEXT_XML).get(String.class);
 		String htmlAnswer = target.path("rest").path("hello").request().accept(MediaType.TEXT_HTML).get(String.class);
 
-		System.out.println(response);
-		System.out.println(plainAnswer);
-		System.out.println(xmlAnswer);
-		System.out.println(htmlAnswer);
+		System.out.println("Text plain: " + response);
+		System.out.println("Text plain: " + plainAnswer);
+		System.out.println("Text XML: "  + xmlAnswer);
+		System.out.println("Text HTML: " + htmlAnswer);
 	}
 
 	private static URI getBaseURI() {

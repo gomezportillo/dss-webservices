@@ -17,19 +17,22 @@ public class MyClient
 	{
 		WebTarget target = configureClient();
 
-		MyTester tester = new MyTester(target);
+		Tester tester = new Tester(target);
 		
 		tester.testServerIsUp();
 
+		String all_books = tester.getXMLBooks();
+		System.out.println("Displaying all books:\n" + all_books);
+		
 		tester.testCountBooks();
-		
-		tester.testGetBook();
-
-		tester.testAddBook();
-		
-		tester.testDeleteBook();
-		
-		tester.testUpdateBook();
+//		
+//		tester.testGetBook();
+//
+//		tester.testAddBook();
+//		
+//		tester.testDeleteBook();
+//		
+//		tester.testUpdateBook();
 	}
 	
 	private static WebTarget configureClient()

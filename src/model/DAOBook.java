@@ -16,7 +16,7 @@ public enum DAOBook
 		Book aux;
 		// Creating two initial books
 		
-		aux = new Book("1", "El capitán Alatriste", "Pérez-Reverte", "Alfaguara", 9);
+		aux = new Book("1", "El capitan Alatriste", "Arturo Perez-Reverte", "Alfaguara", 9);
 		this.contentProvider.put(aux.getId(), aux);
 		
 		aux = new Book("2", "Elantris", "Brandon Sanderson", "Nova", 3);

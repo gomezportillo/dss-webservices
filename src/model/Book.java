@@ -10,6 +10,7 @@ public class Book
 	private String author;
 	private String publisher;
 	private int edition;
+	private String summary;
 
 	public Book(String id, String title, String author, String publisher, int edition) 
 	{
@@ -71,5 +72,15 @@ public class Book
 
 	public void setEdition(int edition) {
 		this.edition = edition;
+	}
+
+	public String getSummary() 
+	{
+		return summary;
+	}
+
+	public void setSummary(String summary) 
+	{
+		this.summary = summary;
 	}
 }

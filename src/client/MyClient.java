@@ -5,8 +5,6 @@ import java.net.URI;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriBuilder;
 
 import org.glassfish.jersey.client.ClientConfig;
@@ -19,15 +17,19 @@ public class MyClient
 	{
 		WebTarget target = configureClient();
 
-		String response = target.path("rest").path("book").request().accept(MediaType.TEXT_PLAIN).get(Response.class).toString();
-		String plainAnswer = target.path("rest").path("book").request().accept(MediaType.TEXT_PLAIN).get(String.class);
-		String xmlAnswer = target.path("rest").path("book").request().accept(MediaType.TEXT_XML).get(String.class);
-		String htmlAnswer = target.path("rest").path("book").request().accept(MediaType.TEXT_HTML).get(String.class);
+		MyTester tester = new MyTester(target);
+		
+		tester.testServerIsUp();
 
-		System.out.println("Text plain: " + response);
-		System.out.println("Text plain: " + plainAnswer);
-		System.out.println("Text XML: "  + xmlAnswer);
-		System.out.println("Text HTML: " + htmlAnswer);
+		tester.testCountBooks();
+		
+		tester.testGetBook();
+
+		tester.testAddBook();
+		
+		tester.testDeleteBook();
+		
+		tester.testUpdateBook();
 	}
 	
 	private static WebTarget configureClient()

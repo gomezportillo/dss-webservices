@@ -1,12 +1,16 @@
 package resource;
 
+import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Request;
+import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
+import javax.xml.bind.JAXBElement;
 
 import model.Book;
 import model.DAOBook;
@@ -44,6 +48,22 @@ public class BookResource
 	public void deleteBook() 
 	{
 		DAOBook.INSTANCE.getModel().remove(id);
+	}
+	
+	@PUT
+	@Consumes(MediaType.APPLICATION_XML)
+	public void putBook(JAXBElement<Book> bookJAXB) 
+	{
+		Book book = bookJAXB.getValue();
+		
+		if (DAOBook.INSTANCE.getModel().containsKey(book.getId()))
+		{
+			DAOBook.INSTANCE.getModel().replace(book.getId(), book);
+		}
+		else
+		{
+			DAOBook.INSTANCE.getModel().put(book.getId(), book);
+		}
 	}
 	
 	private Book getBookFromDAO(String id)

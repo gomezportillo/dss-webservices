@@ -39,6 +39,9 @@ public class MyClient
 		
 		System.out.println("\n======TESTING PUTTING BOOK======");
 		tester.testPutBook();
+		
+		System.out.println("\n======TESTING UPDATE BOOK======");
+		tester.testUpdateBook();
 	}
 	
 	private static WebTarget configureClient()

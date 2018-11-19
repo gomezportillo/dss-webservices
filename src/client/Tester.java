@@ -57,7 +57,7 @@ public class Tester
 		String response = target.path("rest").path("books").request().accept(MediaType.TEXT_XML).get(String.class);
 
 		assertFalse( response.equals(null) );
-		System.out.println("Displaying all books:\n" + response);
+		System.out.println("Getting all books in server:\n" + response);
 	}
 
 	@Test
@@ -67,7 +67,7 @@ public class Tester
 		String response = target.path("rest").path("books").path(index).request(MediaType.APPLICATION_XML).get(String.class);
 
 		assertTrue( response.contains("<id>"+index+"</id>"));
-		System.out.println("Response after asking for book with index=" + index + ":\n" + response);
+		System.out.println("Response after getting book with index=" + index + ":\n" + response);
 	}
 
 	@Test
@@ -84,14 +84,14 @@ public class Tester
 		form.param("publisher", book.getPublisher());
 		form.param("edition", String.valueOf(book.getEdition()));
 		form.param("summary", "La asesina Mia Corvere acaba de unirse a la banda más mortífera de la República.");
-		Entity<Form> entity = Entity.entity(form,MediaType.APPLICATION_FORM_URLENCODED);
+		Entity<Form> entity = Entity.entity(form, MediaType.APPLICATION_FORM_URLENCODED);
 
 		Response response = target.path("rest").path("books").request().post(entity, Response.class);
 		assertEquals(response.getStatus(), expected_code);
 		System.out.println("HTTP code after posting book (expected "+expected_code+"): " + response.getStatus());
 
 		String all_books = target.path("rest").path("books").request().accept(MediaType.TEXT_XML).get(String.class);
-		assertTrue( all_books.contains("<title>"+book.getTitle()+"</title>") );
+		assertTrue( all_books.contains("<title>" + book.getTitle() + "</title>") );
 		System.out.println("List of books DOES contain new posted book");
 	}
 
@@ -115,5 +115,42 @@ public class Tester
 	@Test
 	public void testPutBook() 
 	{
+		final int expected_code = 204;
+
+		Book book = new Book("4", "El nombre del viento", "Patrick Rothfuss", "Debolsillo", 8);
+		Entity<Book> entity = Entity.entity(book, MediaType.APPLICATION_XML);
+		Response response = target.path("rest").path("books").path(book.getId()).request(MediaType.APPLICATION_XML).put(entity, Response.class);
+
+		assertEquals(response.getStatus(), expected_code);
+		System.out.println("HTTP response code after adding a book (expected "+expected_code+"): " + response.getStatus());
+
+		String all_books = target.path("rest").path("books").request().accept(MediaType.TEXT_XML).get(String.class);
+
+		assertTrue( all_books.contains("<title>"+book.getTitle()+"</title>") );
+		System.out.println("List of books DOES contain previous put book");
+		
+		target.path("rest").path("books").path(book.getId()).request().delete();
+	}
+
+	@Test
+	public void testUpdateBook() 
+	{
+		// Create the book
+		Book book = new Book("4", "Juego de tronos", "J.R.R. Tolkien", "Gigamesh", 4);
+		Entity<Book> entity = Entity.entity(book, MediaType.APPLICATION_XML);
+		target.path("rest").path("books").path(book.getId()).request(MediaType.APPLICATION_XML).put(entity);
+		
+		// Update the book
+		book.setAuthor("George R.R. Martin");
+		entity = Entity.entity(book, MediaType.APPLICATION_XML);
+		target.path("rest").path("books").path(book.getId()).request(MediaType.APPLICATION_XML).put(entity);
+		
+		// Checking it is updated
+		String all_books = target.path("rest").path("books").request().accept(MediaType.TEXT_XML).get(String.class);
+		System.out.println(all_books);
+		assertTrue( all_books.contains("<author>"+book.getAuthor()+"</author>") );
+		System.out.println("List of books DOES contain updated book");
+		
+		target.path("rest").path("books").path(book.getId()).request().delete();
 	}
 }

@@ -81,11 +81,11 @@ public class BooksResource
 	{
 		return new BookResource(uriInfo, request, id);
 	}
-	
+
 	private List<Book> getAllBooksFromDAO()
 	{
 		List<Book> books_list = new ArrayList<Book>();
-		Collection<Book> books_col =  DAOBook.INSTANCE.getModel().values();
+		Collection<Book> books_col = DAOBook.INSTANCE.getModel().values();
 		books_list.addAll( books_col );
 		return books_list;
 	}

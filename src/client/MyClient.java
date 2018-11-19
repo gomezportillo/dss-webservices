@@ -19,20 +19,26 @@ public class MyClient
 
 		Tester tester = new Tester(target);
 		
+		System.out.println("\n======TESTING SERVER IS UP======");
 		tester.testServerIsUp();
-
-		String all_books = tester.getXMLBooks();
-		System.out.println("Displaying all books:\n" + all_books);
 		
+		System.out.println("\n======TESTING COUNTING BOOKS======");
 		tester.testCountBooks();
-//		
-//		tester.testGetBook();
-//
-//		tester.testAddBook();
-//		
-//		tester.testDeleteBook();
-//		
-//		tester.testUpdateBook();
+		
+		System.out.println("\n======TESTING GETTING ALL BOKS======");
+		tester.testGetAllBooks();
+		
+		System.out.println("\n======TESTING GETTING SINGLE BOOK======");
+		tester.testGetSingleBook();
+
+		System.out.println("\n======TESTING POSTING NEW BOOK======");
+		tester.testPostBook();
+		
+		System.out.println("\n======TESTING DELETING POSTED BOOK======");
+		tester.testDeleteBook();
+		
+		System.out.println("\n======TESTING PUTTING BOOK======");
+		tester.testPutBook();
 	}
 	
 	private static WebTarget configureClient()

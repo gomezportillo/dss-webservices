@@ -24,8 +24,8 @@ public class MyClient
 		System.out.println("\n======TESTING SERVER IS UP======");
 		tester.testServerIsUp();
 		
-		System.out.println("\n======TESTING COUNTING BOOKS======");
-		tester.testCountBooks();
+//		System.out.println("\n======TESTING COUNTING BOOKS======");
+//		tester.testCountBooks();
 		
 		System.out.println("\n======TESTING GETTING ALL BOKS======");
 		tester.testGetAllBooks();

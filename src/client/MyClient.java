@@ -9,6 +9,8 @@ import javax.ws.rs.core.UriBuilder;
 
 import org.glassfish.jersey.client.ClientConfig;
 
+import test.Tester;
+
 public class MyClient 
 {
 	private static final String MY_URI = "http://localhost:8080/dss-webservices";

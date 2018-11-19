@@ -1,4 +1,4 @@
-package client;
+package test;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;

@@ -2,9 +2,58 @@
 <html>
 <head>
 	<meta charset="ISO-8859-1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://code.jquery.com/jquery.min.js"></script>
 	<title>Add book</title>
 </head>
 <body>
+	<div class="container">
+		<div class="page-header">
+			<h1>
+				<span class="glyphicon glyphicon-book"></span> Add book<br/>
+				<small>Desarrollo de Sistemas Software basados en Componentes y Servicios</small>
+			</h1>
+		</div>
+	</div>
+	
+	<div class="col-md-5 col-md-offset-3">
+		<form action="http://localhost:8080/dss-webservices/rest/books" method="POST">
+			<div class="form-group">
+				<label for="id">ID</label>
+				<input name="id" type="text" class="form-control" placeholder="Enter ID" />
+			</div>
 
+			<div class="form-group">
+				<label for="id">Title</label> 
+				<input name="title" type="text" class="form-control" placeholder="Enter title" />
+			</div>
+
+			<div class="form-group">
+				<label for="id">Author</label> 
+				<input name="author" type="text" class="form-control" placeholder="Enter author" />
+			</div>
+
+			<div class="form-group">
+				<label for="id">Publisher</label>
+				<input name="publisher" type="text" class="form-control" placeholder="Enter publisher" />
+			</div>
+
+			<div class="form-group">
+				<label for="id">Edition</label>
+				<input name="edition" type="number" class="form-control" placeholder="Enter edition" />
+			</div>
+
+			<div class="form-group">
+				<label for="id">Summary</label>
+				<input name="summary" type="text" class="form-control" placeholder="Once upon a time..." />
+			</div>
+
+			<div class="form-group">
+				<input value="Submit book" type="submit" class="btn btn-primary" />
+			</div>
+		</form>
+	</div>
 </body>
 </html>
